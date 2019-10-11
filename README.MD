@@ -1,12 +1,15 @@
 # stoplightio.py
 
-Python API Client and CLI for StoplightIO
+Python3 API Client and CLI for StoplightIO
 
 ## Installation
 
 ```shell
 # clone the repo
 git clone git@github.com:aglensmith/stoplightiopy.git
+
+# install requests python module used for HTTP calls
+pip3 install requests
 
 # move .py to user bin folder
 mv stoplightiopy/stoplightio.py ~/bin
