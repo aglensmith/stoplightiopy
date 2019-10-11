@@ -12,7 +12,7 @@ git clone git@github.com:aglensmith/stoplightiopy.git
 pip3 install requests
 
 # move .py to user bin folder
-mv stoplightiopy/stoplightio.py ~/bin
+cp stoplightiopy/stoplightio.py ~/bin
 ```
 
 ## Authentication
