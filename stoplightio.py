@@ -67,7 +67,6 @@ class Domain(Api):
       r = self.post("/docs.release?id=" + self.domain_id)
       return r
 
-
     def config(self, update_to=None):
         if update_to is not None:
           return self.post(self.url % ".updateConfig", data=json.dumps(update_to, ensure_ascii=False))
