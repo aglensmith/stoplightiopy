@@ -78,10 +78,14 @@ class Domain(Api):
 
 # CLI HELPERS #################################################################
 
-def build_domains(domain_id, token):
+def build_domains(domain_id, token, pretty):
     for id in domain_id:
         d = Domain(id, token)
-        print(d.build().text)
+        if pretty:
+             b = json.loads(d.build().text)["build"]
+             print(f"\n{b['id']} | {b['docId']} | {b['status']['code']} | {b['status']['message']}")
+        else:
+            print(d.build().text)
 
 def list_domains(project_id, token):
     p = Project(project_id, token)
@@ -111,12 +115,13 @@ if __name__ == "__main__":
     parser.add_argument('--domains',   metavar='ID', type=int, help="return a list of domains for project [ID]")
     parser.add_argument('--config',    metavar='ID', type=int, help="get the config for domain [ID]")
     parser.add_argument('--redirects', metavar='ID', type=int, help="get the redirects for domain [ID]")
+    parser.add_argument('--pretty',    action="store_true",     help="pretty print?")
     options = parser.parse_args()
     
     _BEARER = find_token(options.token, "SL_API_TOKEN")
 
     if options.build:
-        build_domains(options.build, _BEARER)
+        build_domains(options.build, _BEARER, options.pretty)
     if options.domains:
         list_domains(options.domains, _BEARER)
     if options.config:
